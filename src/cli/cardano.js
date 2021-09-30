@@ -2,7 +2,7 @@ const CardanocliJs = require("cardanocli-js");
 const os = require("os");
 const path = require("path");
 
-const dir = path.join(os.homedir(), "");
+const dir = path.join(os.homedir(), "nftoken");
 const shelleyPath = path.join(
     os.homedir(),
     "nftoken",
