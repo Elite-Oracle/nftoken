@@ -17,7 +17,7 @@ const POLICY_ID = cardano.transactionPolicyid(mintScript)
 
 // 4. Define ASSET_NAME
 
-const ASSET_NAME = "ISADANFT003"
+const ASSET_NAME = "ISADANFT"
 
 // 5. Create ASSET_ID
 
@@ -33,8 +33,7 @@ const metadata = {
                 image: "ipfs://QmVCyt9Uf68tLLStXoGzHdjmApj6xEGt91gJZqoZPphxJ6",
                 description: "iStakeADA NFT #003",
                 type: "image/jpeg",
-                src: "ipfs://QmVCyt9Uf68tLLStXoGzHdjmApj6xEGt91gJZqoZPphxJ6",
-                // authors: ["DON", "FLOR"]
+                src: "ipfs://QmVCyt9Uf68tLLStXoGzHdjmApj6xEGt91gJZqoZPphxJ6"
             }
         }
     }
