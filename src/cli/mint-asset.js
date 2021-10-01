@@ -49,10 +49,11 @@ const tx = {
             value: { ...wallet.balance().value, [ASSET_ID]: 1 }
         }
     ],
-    mint: {
-        actions: [{ type: "mint", quantity: 1, asset: ASSET_ID }],
-        script: [mintScript]
-    },
+    // mint: {
+    //     actions: [{ type: "mint", quantity: 1, asset: ASSET_ID }],
+    //     script: [mintScript]
+    // },
+    mint: [{ action: "mint", value: 1, token: ASSET_ID }],
     metadata,
     witnessCount: 2
 }
