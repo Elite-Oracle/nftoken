@@ -35,10 +35,10 @@ const metadata = {
         [POLICY_ID]: {
             [ASSET_NAME]: {
                 name: "ISADANFT 003",
-                image: "ipfs://QmVCyt9Uf68tLLStXoGzHdjmApj6xEGt91gJZqoZPphxJ6",
+                image: "ipfs://QmTnBKiCLjQEBpwQsDkR9ncMae7FaMANfpgZx5xUnxsF9s",
                 description: "iStakeADA NFT",
                 type: "image/jpeg",
-                src: "ipfs://QmVCyt9Uf68tLLStXoGzHdjmApj6xEGt91gJZqoZPphxJ6"
+                src: "ipfs://QmTnBKiCLjQEBpwQsDkR9ncMae7FaMANfpgZx5xUnxsF9s"
             },
         },
     },
@@ -52,7 +52,7 @@ const tx = {
             value: { ...wallet.balance().value, [ASSET_ID]: 1 },
         },
     ],
-    mint: [{ action: "mint", quantity: 1, asset: ASSET_ID }],
+    mint: [{ action: "mint", quantity: 1, asset: ASSET_ID, script: mintScript }],
     metadata,
     witnessCount: 2,
 };
