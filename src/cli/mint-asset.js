@@ -8,7 +8,7 @@ const wallet = cardano.wallet("ISADA")
 
 const mintScript = {
     keyHash: cardano.addressKeyHash(wallet.name),
-    type: "sig"
+    type: "sig",
 }
 
 // 3. Create POLICY_ID
@@ -56,32 +56,30 @@ const tx = {
 
 // 8. Build transaction
 
-// const buildTransaction = (tx) => {
+const buildTransaction = (tx) => {
 
-//     const raw = cardano.transactionBuildRaw(tx)
-//     const fee = cardano.transactionCalculateMinFee({
-//         ...tx,
-//         txBody: raw
-//     })
+    const raw = cardano.transactionBuildRaw(tx)
+    const fee = cardano.transactionCalculateMinFee({
+        ...tx,
+        txBody: raw
+    })
 
-//     tx.txOut[0].value.lovelace -= fee
+    tx.txOut[0].value.lovelace -= fee
 
-//     return cardano.transactionBuildRaw({ ...tx, fee })
-// }
+    return cardano.transactionBuildRaw({ ...tx, fee })
+}
 
-// const raw = buildTransaction(tx)
-
-const raw = createTransaction(tx);
+const raw = buildTransaction(tx)
 
 // 9. Sign transaction
 
-// const signTransaction = (wallet, tx) => {
+const signTransaction = (wallet, tx) => {
 
-//     return cardano.transactionSign({
-//         signingKeys: [wallet.payment.skey, wallet.payment.skey],
-//         txBody: tx
-//     })
-// }
+    return cardano.transactionSign({
+        signingKeys: [wallet.payment.skey, wallet.payment.skey],
+        txBody: tx
+    })
+}
 
 const signed = signTransaction(wallet, raw)
 
