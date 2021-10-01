@@ -49,7 +49,7 @@ const tx = {
     txOut: [
         {
             address: wallet.paymentAddr,
-            amount: { ...wallet.balance().value, [ASSET_ID]: 1 },
+            value: { ...wallet.balance().value, [ASSET_ID]: 1 },
         },
     ],
     mint: [{ action: "mint", amount: 1, token: ASSET_ID }],
