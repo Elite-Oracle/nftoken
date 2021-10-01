@@ -1,29 +1,17 @@
-const cardano = require("./cardano")
+const cardano = require("./cardano");
 
-// 1. Get the wallet
-
-const wallet = cardano.wallet("ISADA")
-
-// 2. Define mint script
+const wallet = cardano.wallet("ISADA");
 
 const mintScript = {
     keyHash: cardano.addressKeyHash(wallet.name),
     type: "sig",
 }
 
-// 3. Create POLICY_ID
+const POLICY_ID = cardano.transactionPolicyid(mintScript);
 
-const POLICY_ID = cardano.transactionPolicyid(mintScript)
+const ASSET_NAME = "ISADANFT";
 
-// 4. Define ASSET_NAME
-
-const ASSET_NAME = "ISADANFT"
-
-// 5. Create ASSET_ID
-
-const ASSET_ID = POLICY_ID + "." + ASSET_NAME
-
-// 6. Define metadata
+const ASSET_ID = POLICY_ID + "." + ASSET_NAME;
 
 const metadata = {
     721: {
@@ -39,8 +27,6 @@ const metadata = {
     }
 }
 
-// 7. Define transaction
-
 const tx = {
     txIn: wallet.balance().utxo,
     txOut: [
@@ -54,38 +40,32 @@ const tx = {
     witnessCount: 2
 }
 
-// 8. Build transaction
-
 const buildTransaction = (tx) => {
 
-    const raw = cardano.transactionBuildRaw(tx)
+    const raw = cardano.transactionBuildRaw(tx);
     const fee = cardano.transactionCalculateMinFee({
         ...tx,
         txBody: raw
-    })
+    });
 
-    tx.txOut[0].value.lovelace -= fee
+    tx.txOut[0].value.lovelace -= fee;
 
-    return cardano.transactionBuildRaw({ ...tx, fee })
+    return cardano.transactionBuildRaw({ ...tx, fee });
 }
 
-const raw = buildTransaction(tx)
-
-// 9. Sign transaction
+const raw = buildTransaction(tx);
 
 const signTransaction = (wallet, tx) => {
 
     return cardano.transactionSign({
         signingKeys: [wallet.payment.skey, wallet.payment.skey],
         txBody: tx
-    })
+    });
 }
 
-const signed = signTransaction(wallet, raw)
+const signed = signTransaction(wallet, raw);
 
 // console.log(cardano.transactionView({ txFile: signed }));
-
-// 10. Submit transaction
 
 const txHash = cardano.transactionSubmit(signed)
 
