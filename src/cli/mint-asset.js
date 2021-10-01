@@ -49,10 +49,6 @@ const tx = {
             value: { ...wallet.balance().value, [ASSET_ID]: 1 }
         }
     ],
-    // mint: {
-    //     actions: [{ type: "mint", quantity: 1, asset: ASSET_ID }],
-    //     script: [mintScript]
-    // },
     mint: [{ action: "mint", quantity: 1, asset: ASSET_ID }],
     metadata,
     witnessCount: 2
@@ -73,7 +69,9 @@ const buildTransaction = (tx) => {
     return cardano.transactionBuildRaw({ ...tx, fee })
 }
 
-const raw = buildTransaction(tx)
+// const raw = buildTransaction(tx)
+
+const raw = createTransaction(tx);
 
 // 9. Sign transaction
 
@@ -86,6 +84,8 @@ const signTransaction = (wallet, tx) => {
 }
 
 const signed = signTransaction(wallet, raw)
+
+// console.log(cardano.transactionView({ txFile: signed }));
 
 // 10. Submit transaction
 
