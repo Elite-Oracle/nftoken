@@ -34,7 +34,7 @@ const metadata = {
     721: {
         [POLICY_ID]: {
             [ASSET_NAME]: {
-                name: "ISADANFT #003",
+                name: "ISADANFT 003",
                 image: "ipfs://QmVCyt9Uf68tLLStXoGzHdjmApj6xEGt91gJZqoZPphxJ6",
                 description: "iStakeADA NFT",
                 type: "image/jpeg",
