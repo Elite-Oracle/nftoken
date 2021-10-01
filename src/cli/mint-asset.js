@@ -45,7 +45,7 @@ const buildTransaction = (tx) => {
     const raw = cardano.transactionBuildRaw(tx);
     const fee = cardano.transactionCalculateMinFee({
         ...tx,
-        txBody: raw
+        txBody: raw,
     });
 
     tx.txOut[0].value.lovelace -= fee;
