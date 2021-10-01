@@ -7,7 +7,7 @@ const buildTransaction = (tx) => {
         ...tx,
         txBody: raw,
     });
-    tx.txOut[0].amount.lovelace -= fee;
+    tx.txOut[0].value.lovelace -= fee;
     return cardano.transactionBuildRaw({ ...tx, fee });
 };
 
@@ -49,7 +49,7 @@ const tx = {
     txOut: [
         {
             address: wallet.paymentAddr,
-            amount: { ...wallet.balance().amount, [ASSET_ID]: 1 },
+            amount: { ...wallet.balance().value, [ASSET_ID]: 1 },
         },
     ],
     mint: [{ action: "mint", amount: 1, token: ASSET_ID }],
